@@ -1,0 +1,311 @@
+/* Xenia beam kit. Shared tokens and primitives for /customer, /shop and /proof.
+   Same language as the landing (.xenia-landing): deep navy to electric blue panels inside a light grey frame,
+   a white beam of light, hairline orbits, sharp white buttons, Geist with tight tracking. Scoped to .xb. */
+
+.xb {
+  --n0: #050b2a;
+  --n1: #0b2a6b;
+  --n2: #081a4a;
+  --blue: #2d6cff;
+  --pale: #cfe3ff;
+  --frame: #e8ebf0; /* same as the landing */
+  --ink: #0a1330;
+  --ink-2: #434d68; /* 8.3:1 on the frame */
+  --line-d: rgba(207, 227, 255, 0.16);
+  --line-d2: rgba(207, 227, 255, 0.3);
+  --line-l: rgba(10, 19, 48, 0.12);
+  --t1: #fff;
+  --t2: rgba(255, 255, 255, 0.78); /* >= 7:1 on navy */
+  --t3: rgba(255, 255, 255, 0.64); /* >= 5:1 on navy, small print only */
+  --amber: #ffb547;
+  --mint: #5ee6a8;
+  --red: #ff8a8a;
+  --mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fr: 14px;
+  --r: 22px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+.xb *,
+.xb *::before,
+.xb *::after { box-sizing: border-box; }
+:where(.xb) :where(h1, h2, h3, p, ul, ol, dl, dd, figure) { margin: 0; }
+:where(.xb) :where(ul, ol) { padding: 0; list-style: none; }
+:where(.xb) :where(a) { color: inherit; }
+.xb :focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.xb .xb-dark :focus-visible,
+.xb.xb-dark :focus-visible { outline-color: var(--pale); }
+.xb .xb-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- navy panel ---------- */
+.xb-panel {
+  position: relative;
+  border-radius: var(--r);
+  overflow: hidden;
+  color: var(--t1);
+  isolation: isolate;
+  background:
+    radial-gradient(70% 60% at 104% 8%, rgba(45, 108, 255, 0.55) 0%, rgba(45, 108, 255, 0) 70%),
+    radial-gradient(60% 50% at 0% 100%, rgba(11, 42, 107, 0.55), transparent 70%),
+    linear-gradient(170deg, #050b2a 0%, #061336 40%, #081a4a 100%);
+}
+.xb-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- brand ---------- */
+.xb-brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: none;
+  color: #fff;
+}
+.xb-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+.xb-wordmark > span { transform: translateY(-2px); }
+.xb-mark { flex: none; }
+
+/* ---------- segmented boxes (nav, tabs, meta) ---------- */
+.xb-segs { display: flex; gap: 3px; }
+.xb-seg {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 12.5px;
+  color: var(--t2);
+  background: rgba(5, 11, 42, 0.4);
+  border: 1px solid rgba(207, 227, 255, 0.12);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+}
+a.xb-seg:hover {
+  color: #fff;
+  background: rgba(45, 108, 255, 0.22);
+  border-color: rgba(207, 227, 255, 0.3);
+}
+.xb-light .xb-seg {
+  color: var(--ink-2);
+  background: rgba(255, 255, 255, 0.55);
+  border-color: var(--line-l);
+}
+.xb-light a.xb-seg:hover { color: var(--ink); background: #fff; }
+
+/* ---------- sharp buttons ---------- */
+.xb-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.25s ease, box-shadow 0.35s ease, border-color 0.25s, color 0.2s, opacity 0.2s;
+}
+.xb-btn.has-arrow { justify-content: space-between; gap: 28px; padding-right: 16px; }
+.xb-btn.is-block { display: flex; width: 100%; }
+.xb-btn.is-lg { min-height: 54px; font-size: 15.5px; padding: 0 20px; }
+.xb-btn.is-sm { min-height: 44px; font-size: 13px; padding: 0 14px; }
+.xb-btn.is-white { background: #fff; color: #071640; }
+.xb-btn.is-white:hover:not(:disabled) {
+  background: #eef4ff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4), 0 10px 40px rgba(120, 170, 255, 0.35);
+}
+.xb-btn.is-ghost { background: transparent; color: #fff; border-color: var(--line-d2); }
+.xb-btn.is-ghost:hover:not(:disabled) { background: rgba(207, 227, 255, 0.08); border-color: rgba(207, 227, 255, 0.55); }
+.xb-btn.is-glass { background: rgba(207, 227, 255, 0.08); color: #fff; border-color: var(--line-d); }
+.xb-btn.is-glass:hover:not(:disabled) { background: rgba(207, 227, 255, 0.14); }
+.xb-btn.is-navy { background: var(--n0); color: #fff; }
+.xb-btn.is-navy:hover:not(:disabled) { background: var(--n1); }
+.xb-btn.is-danger { background: transparent; color: var(--red); border-color: rgba(255, 138, 138, 0.45); }
+.xb-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.xb-btn[aria-busy="true"] { opacity: 0.8; cursor: progress; }
+.xb-btn .xb-arrow { flex: none; transition: transform 0.3s var(--ease); }
+.xb-btn:hover:not(:disabled) .xb-arrow { transform: translateX(3px); }
+.xb-spin {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1.6px solid currentColor;
+  border-right-color: transparent;
+  animation: xb-spin 0.8s linear infinite;
+  flex: none;
+}
+@keyframes xb-spin { to { transform: rotate(360deg); } }
+
+/* ---------- status pills (sharp tags with a dot) ---------- */
+.xb-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 26px;
+  padding: 0 9px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--t2);
+  border: 1px solid var(--line-d);
+  background: rgba(5, 11, 42, 0.35);
+}
+.xb-pill > i {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.xb-pill.is-live { color: var(--pale); border-color: rgba(143, 184, 255, 0.4); }
+.xb-pill.is-live > i { background: #8fb8ff; box-shadow: 0 0 0 3px rgba(143, 184, 255, 0.2), 0 0 10px #8fb8ff; animation: xb-breathe 2.4s ease-in-out infinite; }
+.xb-pill.is-ok { color: var(--mint); border-color: rgba(94, 230, 168, 0.4); }
+.xb-pill.is-warn { color: var(--amber); border-color: rgba(255, 181, 71, 0.45); }
+.xb-pill.is-warn.is-pulse > i { animation: xb-breathe 1.4s ease-in-out infinite; }
+.xb-pill.is-bad { color: var(--red); border-color: rgba(255, 138, 138, 0.45); }
+.xb-pill.is-muted { color: var(--t3); }
+.xb-pill.is-solid { background: #fff; color: #071640; border-color: #fff; }
+.xb-light .xb-pill { background: #fff; border-color: var(--line-l); color: var(--ink-2); }
+.xb-light .xb-pill.is-ok { color: #0d6b43; border-color: rgba(13, 107, 67, 0.3); }
+.xb-light .xb-pill.is-warn { color: #8a5300; border-color: rgba(138, 83, 0, 0.3); }
+.xb-light .xb-pill.is-bad { color: #a32525; border-color: rgba(163, 37, 37, 0.3); }
+@keyframes xb-breathe { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* ---------- glass ---------- */
+.xb-glass {
+  position: relative;
+  border-radius: 16px;
+  border: 1px solid var(--line-d);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.xb-glass.is-lit {
+  background: linear-gradient(160deg, rgba(10, 30, 90, 0.72), rgba(5, 11, 42, 0.66));
+  border-color: rgba(207, 227, 255, 0.3);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 24px 70px rgba(0, 0, 30, 0.5);
+}
+
+/* ---------- kicker ---------- */
+.xb-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+  padding: 0 11px;
+  border: 1px solid var(--line-d);
+  background: rgba(5, 11, 42, 0.4);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--t2);
+}
+.xb-kicker::before { content: ""; width: 5px; height: 5px; background: var(--pale); }
+.xb-light .xb-kicker { border-color: var(--line-l); background: rgba(255, 255, 255, 0.5); color: var(--ink-2); }
+.xb-light .xb-kicker::before { background: var(--blue); }
+
+/* ---------- beam link (you -> shop) ---------- */
+.xb-link {
+  position: relative;
+  height: 132px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line-d);
+  background: linear-gradient(100deg, #050b2a 0%, #0a2463 70%, #1c4cc0 100%);
+  transition: background 1.2s ease;
+}
+.xb-link.is-off { background: linear-gradient(100deg, #050b2a 0%, #071640 100%); }
+.xb-link-you,
+.xb-link-to {
+  position: absolute;
+  bottom: 12px;
+  z-index: 1;
+  font-size: 12px;
+  color: var(--t2);
+}
+.xb-link-you { left: 14px; }
+.xb-link-to {
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 60%;
+  padding: 5px 9px;
+  border: 1px solid var(--line-d2);
+  background: rgba(5, 11, 42, 0.62);
+  color: #fff;
+  font-weight: 500;
+  transition: opacity 0.8s ease, border-color 0.8s ease;
+}
+.xb-link-to > i {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 10px #fff;
+  transition: background 0.8s, box-shadow 0.8s;
+}
+.xb-link-to > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.xb-link.is-off .xb-link-to { opacity: 0.6; border-style: dashed; }
+.xb-link.is-off .xb-link-to > i { background: transparent; border: 1px solid var(--t3); box-shadow: none; }
+
+/* ---------- orbit glyph (empty states) ---------- */
+.xb-orbit-glyph { display: block; color: var(--pale); }
+.xb-light .xb-orbit-glyph { color: var(--n1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .xb *,
+  .xb *::before,
+  .xb *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* small screens: same frame and radius as the landing */
+@media (max-width: 720px) {
+  .xb { --fr: 8px; --r: 18px; }
+}

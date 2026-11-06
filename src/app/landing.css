@@ -1,0 +1,1277 @@
+/* Xenia landing. Deep navy to electric blue, a beam of light, hairline orbits. Scoped to .xenia-landing. */
+
+.xenia-landing {
+  --n0: #050b2a;
+  --n1: #0b2a6b;
+  --blue: #2d6cff;
+  --pale: #cfe3ff;
+  --frame: #e8ebf0;
+  --ink: #0a1330;
+  --ink-2: #434d68;
+  --line-d: rgba(207, 227, 255, 0.14);
+  --line-l: rgba(10, 19, 48, 0.12);
+  --fr: 14px;
+  --r: 22px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--frame);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+.xenia-landing *,
+.xenia-landing *::before,
+.xenia-landing *::after { box-sizing: border-box; }
+.xenia-landing :where(a) { color: inherit; text-decoration: none; }
+.xenia-landing :where(h1, h2, h3, p, ul, ol, dl, dd, figure) { margin: 0; }
+.xenia-landing :where(ul, ol) { padding: 0; list-style: none; }
+.xenia-landing :focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.xenia-landing .xl-hero :focus-visible,
+.xenia-landing .xl-panel :focus-visible,
+.xenia-landing .xl-take :focus-visible {
+  outline-color: var(--pale);
+}
+
+/* ---------- frame + shared ---------- */
+.xl-frame { padding: 0 var(--fr) var(--fr); }
+.xl-frame-hero { padding-top: var(--fr); }
+.xl-wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+.xl-light { padding-top: clamp(72px, 9vw, 132px); padding-bottom: clamp(72px, 9vw, 132px); }
+.xl-panel {
+  position: relative;
+  border-radius: var(--r);
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(90% 70% at 100% 0%, rgba(45, 108, 255, 0.28), transparent 60%),
+    linear-gradient(180deg, #050b2a 0%, #081a4a 100%);
+  padding: clamp(64px, 8vw, 120px) 0;
+}
+
+.xl-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid var(--line-l);
+  background: rgba(255, 255, 255, 0.45);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  letter-spacing: 0;
+}
+.xl-kicker::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background: var(--blue);
+}
+.xl-head-dark .xl-kicker {
+  border-color: var(--line-d);
+  background: rgba(5, 11, 42, 0.4);
+  color: rgba(255, 255, 255, 0.74);
+}
+.xl-head-dark .xl-kicker::before { background: var(--pale); }
+
+.xl-h1 {
+  font-size: clamp(38px, 3.7vw, 58px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+.xl-h2 {
+  margin-top: 20px;
+  font-size: clamp(32px, 4.3vw, 60px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+.xl-body {
+  margin-top: 18px;
+  max-width: 470px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.xl-head-dark .xl-body { color: rgba(255, 255, 255, 0.72); }
+.xl-head-split {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: end;
+}
+.xl-head-split .xl-body { margin-top: 0; }
+
+.xl-inline {
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: rgba(207, 227, 255, 0.5);
+  text-underline-offset: 4px;
+}
+.xl-inline:hover { text-decoration-color: #fff; }
+
+/* sharp buttons */
+.xl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  min-width: 196px;
+  height: 46px;
+  padding: 0 16px 0 18px;
+  border: 0;
+  border-radius: 0;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: background-color 0.25s ease, box-shadow 0.35s ease;
+}
+.xl-btn-white { background: #fff; color: #071640; }
+.xl-btn-white:hover {
+  background: #eef4ff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4), 0 10px 40px rgba(120, 170, 255, 0.35);
+}
+.xl-btn .xl-arrow { transition: transform 0.3s var(--ease); }
+.xl-btn:hover .xl-arrow { transform: translateX(3px); }
+.xl-btn-sm { height: 36px; min-width: 168px; font-size: 13px; padding: 0 12px 0 14px; }
+
+.xl-note-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.78);
+  transition: color 0.2s;
+}
+.xl-note-link i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(207, 227, 255, 0.9);
+}
+.xl-note-link:hover { color: #fff; }
+
+.xl-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--pale);
+}
+.xl-live i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8fb8ff;
+  box-shadow: 0 0 0 3px rgba(143, 184, 255, 0.2), 0 0 10px #8fb8ff;
+}
+
+/* ---------- 1 HERO ---------- */
+.xl-hero {
+  position: relative;
+  height: calc(100svh - var(--fr) * 2);
+  min-height: 640px;
+  max-height: 1000px;
+  border-radius: var(--r);
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(45% 70% at 100% 50%, rgba(207, 227, 255, 0.55) 0%, rgba(120, 175, 255, 0) 70%),
+    radial-gradient(70% 90% at 102% 50%, rgba(45, 108, 255, 0.9) 0%, rgba(45, 108, 255, 0) 75%),
+    radial-gradient(50% 60% at 40% 50%, rgba(25, 75, 175, 0.6), transparent 70%),
+    linear-gradient(100deg, #050b2a 0%, #071a4a 30%, #0b2a6b 60%, #1d54c9 85%, #2d6cff 100%);
+  isolation: isolate;
+}
+.xl-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 48%;
+  background: linear-gradient(to top, rgba(5, 11, 42, 0.55), rgba(5, 11, 42, 0));
+  pointer-events: none;
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 35%, transparent 60%);
+  mask-image: linear-gradient(to right, #000 0%, #000 35%, transparent 60%);
+}
+.xl-hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+.xl-hero-top {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 26px 28px;
+}
+.xl-brand { display: inline-flex; align-items: center; }
+.xl-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: #fff;
+}
+.xl-wordmark span { transform: translateY(-3px); }
+.xl-mark { flex: none; color: inherit; }
+
+.xl-segs {
+  margin-left: auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 3px;
+  width: min(640px, 48vw);
+}
+.xl-seg {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(5, 11, 42, 0.38);
+  border: 1px solid rgba(207, 227, 255, 0.1);
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+}
+.xl-seg:hover {
+  color: #fff;
+  background: rgba(45, 108, 255, 0.22);
+  border-color: rgba(207, 227, 255, 0.28);
+}
+.xl-hero-open { flex: none; }
+
+.xl-hero-copy {
+  position: absolute;
+  left: 28px;
+  bottom: 30px;
+  z-index: 2;
+  max-width: 440px;
+}
+.xl-hero-lead {
+  margin-top: 18px;
+  max-width: 340px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.74);
+}
+.xl-hero-cta {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+}
+.xl-hero-copy > * { animation: xl-rise 1s var(--ease) both; }
+.xl-hero-copy > :nth-child(2) { animation-delay: 0.1s; }
+.xl-hero-copy > :nth-child(3) { animation-delay: 0.2s; }
+.xl-hero-top { animation: xl-fade 1.2s ease both; }
+
+@keyframes xl-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes xl-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- reveals ---------- */
+.xl-js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s var(--ease) var(--d, 0ms), transform 0.9s var(--ease) var(--d, 0ms);
+}
+.xl-js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* ---------- 2 PROBLEM ---------- */
+.xl-compare {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.xl-cmp {
+  position: relative;
+  min-height: 420px;
+  padding: 26px;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+}
+.xl-cmp-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 11px;
+  font-size: 12.5px;
+  font-weight: 500;
+  border: 1px solid var(--line-l);
+}
+.xl-cmp-quote { font-size: 17px; letter-spacing: -0.015em; position: relative; z-index: 1; }
+
+.xl-cmp-without {
+  background: #dde1e8;
+  color: #3b4560;
+}
+.xl-blank-card {
+  align-self: center;
+  width: min(330px, 100%);
+  padding: 22px;
+  background: #e9ecf1;
+  border: 1px dashed #b4bccb;
+  display: grid;
+  gap: 12px;
+}
+.xl-blank-q {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #b4bccb;
+  font-size: 22px;
+  font-weight: 500;
+  color: #5d6782;
+  margin-bottom: 6px;
+}
+.xl-blank-line { height: 9px; background: #d2d7e0; }
+.xl-blank-line.xl-short { width: 62%; }
+.xl-blank-line.xl-shorter { width: 38%; }
+
+.xl-cmp-with {
+  color: #fff;
+  background: linear-gradient(100deg, #050b2a 0%, #0b2a6b 70%, #1f52c9 100%);
+}
+.xl-cmp-with .xl-cmp-tag { border-color: var(--line-d); color: rgba(255, 255, 255, 0.82); }
+.xl-cmp-beam {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  filter: blur(20px);
+}
+.xl-cmp-beam::before {
+  content: "";
+  position: absolute;
+  left: 4%;
+  right: -10%;
+  top: 50%;
+  height: 76%;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(207, 227, 255, 0.55) 45%, rgba(207, 227, 255, 0.85));
+  clip-path: polygon(0 49%, 55% 40%, 100% 0, 100% 100%, 55% 60%, 0 51%);
+  opacity: 0.8;
+}
+.xl-cmp-with::after {
+  content: "";
+  position: absolute;
+  left: 4%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 18px 6px rgba(207, 227, 255, 0.85);
+}
+.xl-mini-card {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  width: min(330px, 100%);
+  padding: 20px 22px;
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(10, 30, 90, 0.7), rgba(5, 11, 42, 0.55));
+  border: 1px solid rgba(207, 227, 255, 0.28);
+  backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 20px 60px rgba(0, 0, 30, 0.45);
+}
+.xl-mini-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.xl-mini-name { margin-top: 14px; font-size: 26px; font-weight: 500; letter-spacing: -0.03em; }
+.xl-mini-card dl { margin-top: 12px; display: grid; gap: 10px; }
+.xl-mini-card dt { font-size: 12px; color: rgba(255, 255, 255, 0.66); }
+.xl-mini-card dd { font-size: 15px; margin-top: 2px; }
+
+.xl-beam-core {
+  position: absolute;
+  left: 4%;
+  top: 50%;
+  width: 62%;
+  height: 3px;
+  margin-top: -1.5px;
+  background: linear-gradient(90deg, #fff 0%, rgba(235, 244, 255, 0.85) 40%, rgba(207, 227, 255, 0) 100%);
+  clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 70%);
+  filter: drop-shadow(0 0 6px rgba(207, 227, 255, 0.9));
+  pointer-events: none;
+}
+.xl-show-stage .xl-beam-core { left: 6%; width: 70%; }
+
+/* ---------- 3 HOW IT WORKS (orbit) ---------- */
+.xl-panel-how {
+  background:
+    radial-gradient(60% 60% at 50% 110%, rgba(45, 108, 255, 0.4), transparent 70%),
+    linear-gradient(180deg, #050b2a 0%, #071a4c 100%);
+}
+.xl-orbit {
+  position: relative;
+  margin-top: 40px;
+  aspect-ratio: 1200 / 440;
+}
+.xl-orbit-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.xl-orbit-faint { fill: none; stroke: url(#xl-orbit-fade); stroke-width: 1; }
+.xl-orbit-path { fill: none; stroke: rgba(207, 227, 255, 0.26); stroke-width: 1; }
+.xl-orbit-trail {
+  fill: none;
+  stroke: url(#xl-orbit-trail);
+  stroke-width: 2;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: calc(1 - var(--trail, 0));
+  filter: drop-shadow(0 0 6px rgba(207, 227, 255, 0.8));
+}
+.xl-orbit-node-ring {
+  fill: #071640;
+  stroke: rgba(207, 227, 255, 0.35);
+  stroke-width: 1;
+  transition: stroke 0.5s, fill 0.5s;
+}
+.xl-orbit-node-dot { fill: rgba(207, 227, 255, 0.5); transition: fill 0.5s; }
+.xl-orbit-node.is-lit .xl-orbit-node-ring { stroke: #fff; fill: #0f3a99; }
+.xl-orbit-node.is-lit .xl-orbit-node-dot { fill: #fff; }
+.xl-orbit-steps li {
+  position: absolute;
+  left: var(--x);
+  top: calc(var(--y) + 36px);
+  width: 23%;
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 0.6;
+  transition: opacity 0.6s ease;
+}
+.xl-orbit-steps li.is-lit { opacity: 1; }
+.xl-orbit-n {
+  display: inline-block;
+  font-size: 12px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  color: var(--pale);
+  border: 1px solid var(--line-d);
+  padding: 3px 7px;
+}
+.xl-orbit-steps h3 {
+  margin-top: 12px;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+.xl-orbit-steps p {
+  margin: 8px auto 0;
+  max-width: 250px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+/* ---------- 4 GUEST CARD ---------- */
+.xl-show {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 14px;
+}
+.xl-show-stage {
+  position: relative;
+  min-height: 540px;
+  border-radius: 18px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 40px 24px;
+  background:
+    radial-gradient(60% 80% at 100% 50%, rgba(45, 108, 255, 0.7), transparent 70%),
+    linear-gradient(100deg, #050b2a 0%, #0a2463 70%, #1c4cc0 100%);
+}
+.xl-show-beam {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  filter: blur(26px);
+}
+.xl-show-beam::before {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: -6%;
+  top: 50%;
+  height: 110%;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, #fff 0%, rgba(207, 227, 255, 0.55) 40%, rgba(220, 235, 255, 0.95) 100%);
+  clip-path: polygon(0 49%, 50% 43%, 100% 0, 100% 100%, 50% 57%, 0 51%);
+  opacity: 0.7;
+  animation: xl-breathe 7s ease-in-out infinite;
+}
+.xl-show-stage::after {
+  content: "";
+  position: absolute;
+  left: 6%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 24px 8px rgba(207, 227, 255, 0.9);
+}
+.xl-show-orbit {
+  position: absolute;
+  left: 6%;
+  top: 50%;
+  width: 70%;
+  aspect-ratio: 2.2;
+  transform: translate(-12%, -50%);
+  border: 1px solid rgba(207, 227, 255, 0.18);
+  border-radius: 50%;
+  pointer-events: none;
+}
+@keyframes xl-breathe {
+  0%, 100% { opacity: 0.62; transform: translateY(-50%) scaleY(0.96); }
+  50% { opacity: 0.8; transform: translateY(-50%) scaleY(1.04); }
+}
+
+.xl-glass {
+  position: relative;
+  z-index: 1;
+  width: min(410px, 100%);
+  padding: 22px 24px 20px;
+  border-radius: 16px;
+  color: #fff;
+  background: linear-gradient(160deg, rgba(20, 45, 120, 0.62), rgba(5, 11, 42, 0.62));
+  border: 1px solid rgba(207, 227, 255, 0.26);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 50px rgba(120, 170, 255, 0.12),
+    0 40px 90px rgba(0, 0, 30, 0.5);
+}
+.xl-glass-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.74);
+}
+.xl-glass-brand { display: inline-flex; gap: 8px; align-items: center; }
+.xl-glass-rows { margin-top: 18px; display: grid; }
+.xl-glass-rows > div {
+  padding: 12px 0;
+  border-top: 1px solid rgba(207, 227, 255, 0.14);
+}
+.xl-glass-rows dt { font-size: 12px; color: rgba(255, 255, 255, 0.66); }
+.xl-glass-rows dd { margin-top: 4px; font-size: 16px; letter-spacing: -0.01em; }
+.xl-glass-rows dd.xl-glass-name { font-size: 30px; font-weight: 500; letter-spacing: -0.035em; }
+.xl-glass-status {
+  margin-top: 6px;
+  padding: 11px 12px;
+  font-size: 13px;
+  color: #fff;
+  background: rgba(45, 108, 255, 0.28);
+  border: 1px solid rgba(207, 227, 255, 0.24);
+}
+
+.xl-show-lists { display: grid; gap: 14px; align-content: stretch; }
+.xl-list {
+  padding: 28px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid var(--line-l);
+}
+.xl-list-dim { background: transparent; }
+.xl-list h3 { font-size: 21px; font-weight: 500; letter-spacing: -0.025em; }
+.xl-list ul { margin-top: 18px; display: grid; }
+.xl-list li {
+  position: relative;
+  padding: 12px 0 12px 22px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  border-top: 1px solid var(--line-l);
+}
+.xl-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 19px;
+  width: 6px;
+  height: 6px;
+  background: var(--blue);
+}
+.xl-list-dim li::before { background: transparent; border: 1px solid var(--ink-2); }
+
+/* ---------- 5 CONSTELLATION ---------- */
+.xl-panel-map {
+  background:
+    radial-gradient(50% 55% at 50% 62%, rgba(45, 108, 255, 0.35), transparent 70%),
+    linear-gradient(180deg, #050b2a 0%, #081a4a 100%);
+}
+.xl-map {
+  position: relative;
+  margin: 56px auto 0;
+  max-width: 1000px;
+  aspect-ratio: 16 / 10;
+}
+.xl-map-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.xl-map-svg ellipse {
+  fill: none;
+  stroke: rgba(207, 227, 255, 0.2);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.xl-ray {
+  stroke: rgba(207, 227, 255, 0.12);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.35s ease, stroke-width 0.35s ease;
+}
+.xl-map:has([data-place="barber"]:is(:hover, :focus-within)) .xl-ray-barber,
+.xl-map:has([data-place="garage"]:is(:hover, :focus-within)) .xl-ray-garage,
+.xl-map:has([data-place="pharmacy"]:is(:hover, :focus-within)) .xl-ray-pharmacy,
+.xl-map:has([data-place="tailor"]:is(:hover, :focus-within)) .xl-ray-tailor,
+.xl-map:has([data-place="cornerShop"]:is(:hover, :focus-within)) .xl-ray-cornerShop,
+.xl-map:has([data-place="gym"]:is(:hover, :focus-within)) .xl-ray-gym,
+.xl-map:has([data-place="florist"]:is(:hover, :focus-within)) .xl-ray-florist {
+  stroke: rgba(255, 255, 255, 0.85);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 4px rgba(207, 227, 255, 0.9));
+}
+.xl-map-drift { position: absolute; inset: 0; pointer-events: none; }
+.xl-map-drift i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(207, 227, 255, 0.9);
+  offset-rotate: 0deg;
+  animation: xl-drift 80s linear infinite;
+}
+.xl-map-drift i:nth-child(1) { offset-path: ellipse(18% 22% at 50% 50%); animation-duration: 60s; }
+.xl-map-drift i:nth-child(2) { offset-path: ellipse(32% 37% at 50% 50%); offset-distance: 40%; animation-duration: 95s; animation-delay: -30s; }
+.xl-map-drift i:nth-child(3) { offset-path: ellipse(44% 45% at 50% 50%); animation-duration: 130s; animation-delay: -70s; }
+@keyframes xl-drift { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+
+.xl-map-you {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  justify-items: center;
+}
+.xl-map-you i {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 10px rgba(207, 227, 255, 0.08), 0 0 30px 10px rgba(207, 227, 255, 0.55);
+}
+.xl-map-you span {
+  position: absolute;
+  top: 28px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.xl-map-nodes { position: absolute; inset: 0; }
+.xl-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.xl-node:is(:hover, :focus-within) { z-index: 5; }
+.xl-node-btn {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.xl-node-img {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #0b2a6b;
+  isolation: isolate;
+  border: 1px solid rgba(207, 227, 255, 0.4);
+  box-shadow: 0 0 0 6px rgba(45, 108, 255, 0.1);
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s var(--ease);
+}
+.xl-node-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(45, 108, 255, 0.35), rgba(5, 11, 42, 0.35));
+  mix-blend-mode: multiply;
+}
+.xl-duo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1) contrast(1.15) brightness(1.05);
+  mix-blend-mode: screen;
+}
+.xl-node-name {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.86);
+  white-space: nowrap;
+}
+.xl-node-btn:hover .xl-node-img,
+.xl-node-btn:focus-visible .xl-node-img {
+  border-color: #fff;
+  transform: scale(1.06);
+  box-shadow: 0 0 0 6px rgba(45, 108, 255, 0.22), 0 0 34px rgba(143, 184, 255, 0.7);
+}
+.xl-node-btn:focus-visible { outline-offset: 6px; }
+.xl-tip {
+  position: absolute;
+  width: 250px;
+  padding: 14px 15px;
+  border-radius: 12px;
+  background: rgba(7, 20, 62, 0.94);
+  border: 1px solid rgba(207, 227, 255, 0.24);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 50px rgba(0, 0, 20, 0.5);
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s var(--ease), visibility 0.25s;
+}
+.xl-tip p + p { margin-top: 7px; color: rgba(255, 255, 255, 0.84); }
+.xl-tip b { display: block; font-weight: 500; font-size: 11.5px; color: var(--pale); }
+.xl-tip-h { font-weight: 500; font-size: 14px; }
+.xl-tip-b .xl-tip { top: calc(100% + 10px); transform: translateY(-4px); }
+.xl-tip-t .xl-tip { bottom: calc(100% + 10px); transform: translateY(4px); }
+.xl-tip-l .xl-tip { left: -6px; }
+.xl-tip-r .xl-tip { right: -6px; }
+.xl-tip-c .xl-tip { left: 50%; margin-left: -125px; }
+.xl-node:is(:hover, :focus-within) .xl-tip {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+/* ---------- 6 TAKE IT BACK ---------- */
+.xl-privacy {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(32px, 6vw, 88px);
+  align-items: center;
+}
+.xl-facts { margin-top: 30px; display: grid; }
+.xl-facts li {
+  position: relative;
+  padding: 14px 0 14px 26px;
+  border-top: 1px solid var(--line-l);
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.xl-facts li:last-child { border-bottom: 1px solid var(--line-l); }
+.xl-facts li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 22px;
+  width: 8px;
+  height: 1px;
+  background: var(--blue);
+  box-shadow: 0 0 0 0.5px var(--blue);
+}
+
+.xl-take {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  color: #fff;
+  padding: 22px;
+  background:
+    radial-gradient(70% 70% at 100% 30%, rgba(45, 108, 255, 0.5), transparent 70%),
+    linear-gradient(170deg, #050b2a 0%, #0a2463 100%);
+}
+.xl-take-stage {
+  position: relative;
+  height: 210px;
+}
+.xl-take-orbit {
+  position: absolute;
+  left: 8%;
+  top: 50%;
+  width: 90%;
+  height: 140px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(207, 227, 255, 0.14);
+  border-radius: 50%;
+}
+.xl-take-orbit-2 { left: 18%; width: 70%; height: 70px; }
+.xl-take-you {
+  position: absolute;
+  left: 8%;
+  top: 50%;
+  width: 0;
+  height: 0;
+}
+.xl-take-you i {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 24px 8px rgba(207, 227, 255, 0.85);
+}
+.xl-take-you-label,
+.xl-take-node-label {
+  position: absolute;
+  top: calc(50% + 22px);
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.78);
+  transform: translateX(-50%);
+}
+.xl-take-you-label { left: 8%; }
+.xl-take-node-label { left: 84%; top: calc(50% + 40px); white-space: nowrap; }
+.xl-take-beam {
+  position: absolute;
+  filter: drop-shadow(0 0 8px rgba(207, 227, 255, 0.8));
+  left: 8%;
+  width: calc(76% - 30px);
+  top: 50%;
+  height: 46px;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  transition: opacity 0.9s ease, transform 1s var(--ease);
+}
+.xl-take-beam::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #fff, rgba(207, 227, 255, 0.75));
+  clip-path: polygon(0 47%, 100% 20%, 100% 80%, 0 53%);
+}
+.xl-take-beam::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0.6));
+}
+.xl-take-beam i {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 40px;
+  height: 10px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, #fff, rgba(255, 255, 255, 0));
+  animation: xl-travel 3.2s ease-in infinite;
+  z-index: 1;
+}
+@keyframes xl-travel {
+  0% { left: 0; opacity: 0; }
+  20% { opacity: 1; }
+  100% { left: calc(100% - 40px); opacity: 0; }
+}
+.xl-take-node {
+  position: absolute;
+  left: 84%;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  border-radius: 50%;
+  overflow: hidden;
+  isolation: isolate;
+  background: #0b2a6b;
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 6px rgba(45, 108, 255, 0.2), 0 0 34px rgba(143, 184, 255, 0.7);
+  transition: box-shadow 0.9s ease, border-color 0.9s ease, opacity 0.9s ease;
+}
+.xl-take-node::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(45, 108, 255, 0.35), rgba(5, 11, 42, 0.35));
+  mix-blend-mode: multiply;
+}
+.xl-take-screen {
+  position: relative;
+  min-height: 132px;
+  padding: 16px 18px;
+  border: 1px solid rgba(207, 227, 255, 0.2);
+  background: rgba(5, 11, 42, 0.55);
+  backdrop-filter: blur(10px);
+}
+.xl-take-screen-top { font-size: 12px; color: rgba(255, 255, 255, 0.66); }
+.xl-take-screen-on,
+.xl-take-screen-off {
+  margin-top: 10px;
+  transition: opacity 0.6s ease, filter 0.6s ease;
+}
+.xl-take-screen-on p { font-size: 14.5px; line-height: 1.5; }
+.xl-take-screen-name { font-size: 22px !important; font-weight: 500; letter-spacing: -0.03em; }
+.xl-take-screen-warn { color: var(--pale); }
+.xl-take-screen-off {
+  position: absolute;
+  inset: 38px 18px 16px;
+  margin: 0;
+  display: grid;
+  gap: 9px;
+  align-content: start;
+  opacity: 0;
+}
+.xl-take-screen-off p { font-size: 14px; color: rgba(255, 255, 255, 0.72); }
+.xl-take-screen-off span { height: 8px; background: rgba(207, 227, 255, 0.1); }
+.xl-take-screen-off span:nth-of-type(2) { width: 60%; }
+.xl-take-screen-off span:nth-of-type(3) { width: 40%; }
+
+.xl-take.is-off .xl-take-beam { opacity: 0; transform: translateY(-50%) scaleX(0.15); }
+.xl-take.is-off .xl-take-beam i { animation: none; opacity: 0; }
+.xl-take.is-off .xl-take-node {
+  border-color: rgba(207, 227, 255, 0.3);
+  box-shadow: none;
+  opacity: 0.55;
+}
+.xl-take.is-off .xl-take-screen-on { opacity: 0; filter: blur(6px); }
+.xl-take.is-off .xl-take-screen-off { opacity: 1; }
+
+.xl-take-controls {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+}
+.xl-take-status {
+  flex: 1 1 220px;
+  display: flex;
+  gap: 9px;
+  align-items: baseline;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.82);
+}
+.xl-take-status i {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8fb8ff;
+  box-shadow: 0 0 10px #8fb8ff;
+  transform: translateY(-1px);
+  transition: background-color 0.6s, box-shadow 0.6s;
+}
+.xl-take.is-off .xl-take-status i { background: #5d6782; box-shadow: none; }
+.xl-take-note { margin-top: 14px; font-size: 12px; color: rgba(255, 255, 255, 0.6); }
+
+/* ---------- 7 UNDER THE HOOD ---------- */
+.xl-panel-hood {
+  background:
+    radial-gradient(70% 50% at 50% 30%, rgba(45, 108, 255, 0.28), transparent 70%),
+    linear-gradient(180deg, #071640 0%, #050b2a 100%);
+}
+.xl-hood {
+  position: relative;
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+.xl-hood::before,
+.xl-hood::after {
+  content: "";
+  position: absolute;
+  top: 36px;
+  left: 36px;
+  right: calc((100% - 56px) / 3 - 36px);
+  height: 1px;
+}
+.xl-hood::before {
+  background: linear-gradient(90deg, rgba(207, 227, 255, 0.7), rgba(207, 227, 255, 0.35), rgba(207, 227, 255, 0.7));
+  box-shadow: 0 0 12px rgba(143, 184, 255, 0.6);
+}
+.xl-hood::after {
+  height: 9px;
+  margin-top: -4px;
+  background: radial-gradient(closest-side, #fff, rgba(255, 255, 255, 0)) no-repeat;
+  background-size: 90px 100%;
+  background-position: -90px 0;
+  animation: xl-wire 5.5s ease-in-out infinite;
+}
+@keyframes xl-wire {
+  0% { background-position: -90px 0; }
+  70%, 100% { background-position: calc(100% + 90px) 0; }
+}
+.xl-hood > li { position: relative; }
+.xl-hood-node {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle, rgba(45, 108, 255, 0.55), rgba(5, 11, 42, 0.95) 70%);
+  border: 1px solid rgba(207, 227, 255, 0.4);
+  box-shadow: 0 0 40px rgba(45, 108, 255, 0.55);
+}
+.xl-hood-node i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 18px 5px rgba(207, 227, 255, 0.8);
+}
+.xl-hood h3 {
+  margin-top: 26px;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+.xl-hood h3 span {
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+  letter-spacing: 0;
+  color: var(--pale);
+  font-weight: 400;
+}
+.xl-hood ul { margin-top: 18px; display: grid; }
+.xl-hood ul li {
+  padding: 12px 0;
+  border-top: 1px solid var(--line-d);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ---------- 8 CTA ---------- */
+.xl-panel-cta {
+  min-height: 560px;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  background:
+    radial-gradient(60% 100% at 102% 50%, rgba(45, 108, 255, 0.9), transparent 70%),
+    linear-gradient(100deg, #050b2a 0%, #071640 40%, #0b2a6b 70%, #2d6cff 100%);
+}
+.xl-panel-cta::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(5, 11, 42, 0.6), rgba(5, 11, 42, 0));
+  -webkit-mask-image: linear-gradient(to right, #000 35%, transparent 60%);
+  mask-image: linear-gradient(to right, #000 35%, transparent 60%);
+  pointer-events: none;
+}
+.xl-cta-copy {
+  position: relative;
+  z-index: 2;
+  padding: 0 28px 34px;
+  max-width: 520px;
+}
+.xl-h1-cta { font-size: clamp(36px, 4vw, 60px); }
+
+/* ---------- footer ---------- */
+.xl-foot { padding: 18px calc(var(--fr) + 14px) 40px; }
+.xl-foot-in {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px 28px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+.xl-foot-brand .xl-wordmark { color: var(--ink); font-size: 24px; gap: 8px; }
+.xl-foot-brand .xl-wordmark span { transform: translateY(-2px); }
+.xl-foot-nav { display: flex; gap: 20px; }
+.xl-foot-nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.xl-credit { grid-column: 1 / -1; font-size: 12px; color: #4f5874; }
+
+/* loops pause offscreen (Motion adds .is-live while visible) */
+.xenia-landing [data-loop]:not(.is-live) *,
+.xenia-landing [data-loop]:not(.is-live)::before,
+.xenia-landing [data-loop]:not(.is-live)::after { animation-play-state: paused; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1080px) {
+  .xl-hero-top { flex-wrap: wrap; }
+  .xl-segs { order: 3; width: 100%; margin-left: 0; }
+  .xl-hero-open { margin-left: auto; }
+}
+
+@media (max-width: 900px) {
+  .xl-head-split { grid-template-columns: 1fr; gap: 0; }
+  .xl-head-split .xl-body { margin-top: 18px; }
+  .xl-compare,
+  .xl-show,
+  .xl-privacy { grid-template-columns: 1fr; }
+  .xl-show-stage { min-height: 460px; }
+
+  /* steps become a vertical beam */
+  .xl-orbit { aspect-ratio: auto; margin-top: 40px; padding-left: 46px; }
+  .xl-orbit-svg { display: none; }
+  .xl-orbit::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(rgba(207, 227, 255, 0.5), rgba(207, 227, 255, 0.12));
+  }
+  .xl-orbit::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: calc(8px + (100% - 16px) * var(--p, 0));
+    width: 12px;
+    height: 12px;
+    margin: -6px 0 0 -5.5px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 18px 6px rgba(207, 227, 255, 0.7);
+  }
+  .xl-orbit-steps { display: grid; gap: 36px; }
+  .xl-orbit-steps li {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    transform: none;
+    text-align: left;
+  }
+  .xl-orbit-steps li::before {
+    content: "";
+    position: absolute;
+    left: -38px;
+    top: 4px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid rgba(207, 227, 255, 0.4);
+    background: #071640;
+    transition: border-color 0.5s, background-color 0.5s;
+  }
+  .xl-orbit-steps li.is-lit::before { border-color: #fff; background: #0f3a99; }
+  .xl-orbit-steps p { margin-left: 0; max-width: 420px; }
+
+  .xl-hood { grid-template-columns: 1fr; gap: 40px; padding-left: 0; }
+  .xl-hood::before,
+  .xl-hood::after { display: none; }
+  .xl-hood > li { padding-left: 96px; }
+  .xl-hood-node { position: absolute; left: 0; top: 0; }
+  .xl-hood h3 { margin-top: 10px; }
+  .xl-hood > li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 36px;
+    top: 78px;
+    bottom: -40px;
+    width: 1px;
+    background: linear-gradient(rgba(207, 227, 255, 0.6), rgba(207, 227, 255, 0.15));
+  }
+  .xl-foot-in { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .xenia-landing { --fr: 8px; --r: 18px; }
+  .xl-hero { min-height: 680px; }
+  .xl-hero-top { padding: 18px 16px; gap: 14px; }
+  .xl-wordmark { font-size: 30px; gap: 9px; }
+  .xl-wordmark .xl-mark { width: 24px; height: 24px; }
+  .xl-hero-open { min-width: 0; gap: 14px; }
+  .xl-segs { gap: 2px; }
+  .xl-seg { padding: 0 8px; font-size: 11.5px; height: 34px; justify-content: center; }
+  .xl-hero-copy { left: 18px; right: 18px; bottom: 22px; }
+  .xl-hero::after { height: 60%; -webkit-mask-image: none; mask-image: none; }
+  .xl-h1 { font-size: clamp(40px, 11.5vw, 52px); }
+  .xl-hero-lead { font-size: 15px; max-width: 100%; }
+  .xl-cmp { min-height: 340px; padding: 20px; }
+  .xl-map { aspect-ratio: 4 / 5; margin-top: 40px; }
+  .xl-node-img { width: 50px; height: 50px; }
+  .xl-node-name { font-size: 12px; }
+  .xl-tip { width: 220px; }
+  .xl-tip-c .xl-tip { margin-left: -110px; }
+  .xl-panel-cta { min-height: 520px; }
+  .xl-cta-copy { padding: 0 18px 24px; }
+  .xl-take { padding: 16px; }
+  .xl-take-node { width: 50px; height: 50px; margin: -25px 0 0 -25px; }
+  .xl-foot { padding: 14px 18px 32px; }
+  .xl-foot-nav { flex-wrap: wrap; gap: 10px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xenia-landing *,
+  .xenia-landing *::before,
+  .xenia-landing *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+  .xl-js [data-reveal] { opacity: 1; transform: none; }
+}

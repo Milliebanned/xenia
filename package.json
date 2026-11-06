@@ -6,21 +6,37 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.14.7",
+    "@mysten-incubation/memwal": "^0.1.13",
+    "@mysten/dapp-kit-react": "^2.1.44",
+    "@mysten/seal": "^1.5.3",
+    "@mysten/sui": "^2.39.0",
+    "@mysten/walrus": "^1.2.38",
+    "@protobuf-ts/grpc-transport": "^2.11.1",
+    "@types/qrcode": "^1.5.6",
+    "ai": "^7.0.163",
     "next": "16.4.5",
+    "qrcode": "^1.5.4",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^18.0.9",
     "eslint": "^9",
     "eslint-config-next": "16.4.5",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "vite": "^8.3.6",
+    "vitest": "^5.1.0"
   }
 }

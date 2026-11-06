@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local json store
+/.data/
+
+# design reference screenshots (third-party work, not ours to publish)
+/docs/reference/
+
+# local tooling notes
+AGENTS.md
+ARCHITECTURE.md
